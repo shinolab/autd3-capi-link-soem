@@ -55,6 +55,8 @@ class Config(BaseConfig):
         else:
             self.target = None
 
+        self.setup_linker()
+
     def cargo_command(self, subcommands: list[str]) -> list[str]:
         command = []
         if self.target is None:
@@ -78,6 +80,19 @@ class Config(BaseConfig):
             command.append("--exclude")
             command.append("autd3capi-emulator")
         return command
+
+    def setup_linker(self):
+        if not self.is_linux() or self.target is None:
+            return
+
+        Path(".cargo").mkdir(exist_ok=True)
+        with Path(".cargo/config").open("w") as f:
+            if self.target == "armv7-unknown-linux-gnueabihf":
+                f.write("[target.armv7-unknown-linux-gnueabihf]\n")
+                f.write('linker = "arm-linux-gnueabihf-gcc"\n')
+            if self.target == "aarch64-unknown-linux-gnu":
+                f.write("[target.aarch64-unknown-linux-gnu]\n")
+                f.write('linker = "aarch64-linux-gnu-gcc"\n')
 
 
 def copy_dll(config: Config, dst: str) -> None:
