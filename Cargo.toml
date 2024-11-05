@@ -1,6 +1,6 @@
 [package]
 name = "autd3capi-link-soem"
-version = "29.0.0-rc.4"
+version = "29.0.0-rc.5"
 authors = ["shun suzuki <suzuki@hapis.k.u-tokyo.ac.jp>"]
 edition = "2021"
 license = "MIT"
@@ -14,8 +14,8 @@ static = ["autd3capi-driver/static"]
 unity = ["autd3capi-driver/unity"]
 
 [dependencies]
-autd3capi-driver = { version = "29.0.0-rc.4.1" }
-autd3-link-soem = { version = "29.0.0-rc.4", features = ["local", "remote", "async-trait"] }
+autd3capi-driver = { version = "29.0.0-rc.5" }
+autd3-link-soem = { version = "29.0.0-rc.5", features = ["local", "remote", "async-trait"] }
 thread-priority = "1.1.0"
 tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
 tracing = "0.1.40"
