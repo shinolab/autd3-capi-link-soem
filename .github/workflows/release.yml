@@ -90,7 +90,7 @@ jobs:
           script: |
             return 'autd3-link-soem-'+context.payload.ref.replace(/refs\/tags\//, '')+'-${{ matrix.name }}-${{ matrix.arch }}';
       - run: |
-          python3 build.py build --release --arch ${{ matrix.arch }} --features "static"
+          python3 build.py build --release --arch ${{ matrix.arch }}
           Compress-Archive -Path LICENSE, lib, ThirdPartyNotice.txt -DestinationPath assets-static.zip
         if: ${{ matrix.os == 'windows-latest' }}
       - run: |
@@ -102,7 +102,7 @@ jobs:
           Compress-Archive -Path LICENSE, bin, ThirdPartyNotice.txt -DestinationPath assets-shared.zip
         if: ${{ matrix.os == 'windows-latest' }}
       - run: |
-          python3 build.py build --release --arch ${{ matrix.arch }} --features "static"
+          python3 build.py build --release --arch ${{ matrix.arch }}
           tar -zcvf assets-static.tar.gz lib LICENSE ThirdPartyNotice.txt
         if: ${{ matrix.os != 'windows-latest' }}
       - run: |

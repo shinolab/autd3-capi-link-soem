@@ -10,7 +10,6 @@ repository = "https://github.com/shinolab/autd3-capi-link-soem"
 crate-type = ["cdylib", "staticlib"]
 
 [features]
-static = ["autd3capi-driver/static"]
 unity = ["autd3capi-driver/unity"]
 
 [dependencies]
