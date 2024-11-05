@@ -9,29 +9,29 @@ from pathlib import Path
 from tools.autd3_build_utils.autd3_build_utils import (
     BaseConfig,
     err,
-    rm_glob_f,
+    fetch_submodule,
+    rremove,
     run_command,
     working_dir,
 )
 
 
 class Config(BaseConfig):
-    _all: bool
     release: bool
     target: str | None
     no_examples: bool
 
-    def __init__(self, args) -> None:
+    def __init__(self, args) -> None:  # noqa: ANN001
         super().__init__()
 
-        self._all = hasattr(args, "all") and args.all
-        self.release = hasattr(args, "release") and args.release
-        self.no_examples = hasattr(args, "no_examples") and args.no_examples
-        self.features = args.features if hasattr(args, "features") and args.features else ""
+        self.release = getattr(args, "release", False)
+        self.no_examples = getattr(args, "no_examples", False)
+        self.features = getattr(args, "features", "") or ""
 
-        if hasattr(args, "arch") and args.arch is not None:
+        arch: str = getattr(args, "arch", None)
+        if arch:
             if self.is_linux():
-                match args.arch:
+                match arch:
                     case "arm32" | "armv7":
                         self.target = "armv7-unknown-linux-gnueabihf"
                     case "aarch64":
@@ -39,16 +39,16 @@ class Config(BaseConfig):
                     case "x64":
                         self.target = None
                     case _:
-                        err(f'arch "{args.arch}" is not supported.')
+                        err(f'arch "{arch}" is not supported.')
                         sys.exit(-1)
             elif self.is_windows():
-                match args.arch:
+                match arch:
                     case "aarch64":
                         self.target = "aarch64-pc-windows-msvc"
                     case "x64":
                         self.target = None
                     case _:
-                        err(f'arch "{args.arch}" is not supported.')
+                        err(f'arch "{arch}" is not supported.')
                         sys.exit(-1)
             else:
                 self.target = None
@@ -71,14 +71,13 @@ class Config(BaseConfig):
                 command.extend(subcommands)
             command.append("--target")
             command.append(self.target)
-        command.append("--all")
         if self.release:
             command.append("--release")
         command.append("--features")
         command.append(self.features)
         return command
 
-    def setup_linker(self):
+    def setup_linker(self) -> None:
         if not self.is_linux() or self.target is None:
             return
 
@@ -122,7 +121,7 @@ def copy_lib(config: Config, dst: str) -> None:
     if config.is_windows():
         for dll in path.glob(f"{target}/*.lib"):
             shutil.copy(dll, dst)
-        rm_glob_f(f"{dst}/*.dll.lib")
+        rremove(f"{dst}/*.dll.lib")
         if not config.release:
             for pdb in path.glob(f"{target}/*.pdb"):
                 shutil.copy(pdb, "lib")
@@ -131,7 +130,7 @@ def copy_lib(config: Config, dst: str) -> None:
             shutil.copy(lib, dst)
 
 
-def capi_build(args) -> None:
+def capi_build(args) -> None:  # noqa: ANN001
     config = Config(args)
 
     run_command(config.cargo_command(["build"]))
@@ -142,7 +141,7 @@ def capi_build(args) -> None:
     copy_lib(config, "lib")
 
 
-def capi_lint(args) -> None:
+def capi_lint(args) -> None:  # noqa: ANN001
     config = Config(args)
 
     command = config.cargo_command(["clippy"])
@@ -153,62 +152,56 @@ def capi_lint(args) -> None:
     run_command(command)
 
 
-def capi_clear(_) -> None:
+def capi_clear(_) -> None:  # noqa: ANN001
     run_command(["cargo", "clean"])
 
 
-def util_update_ver(args) -> None:
+def util_update_ver(args) -> None:  # noqa: ANN001
     version = args.version
 
-    with Path("Cargo.toml").open() as f:
-        content = f.read()
-        content = re.sub(
-            r'^version = "(.*?)"',
-            f'version = "{version}"',
-            content,
-            flags=re.MULTILINE,
-        )
-        content = re.sub(
-            r'^autd3(.*)version = "(.*?)"',
-            f'autd3\\1version = "{version}"',
-            content,
-            flags=re.MULTILINE,
-        )
-    with Path("Cargo.toml").open("w") as f:
-        f.write(content)
+    f = Path("Cargo.toml")
+    content = f.read_text()
+    content = re.sub(
+        r'^version = "(.*?)"',
+        f'version = "{version}"',
+        content,
+        flags=re.MULTILINE,
+    )
+    content = re.sub(
+        r'^autd3(.*)version = "(.*?)"',
+        f'autd3\\1version = "{version}"',
+        content,
+        flags=re.MULTILINE,
+    )
+    f.write_text(content)
 
-    with Path("ThirdPartyNotice.txt").open() as f:
-        content = f.read()
-        content = re.sub(
-            r"^autd3(.*) (.*) \((.*)\)",
-            f"autd3\\1 {version} (MIT)",
-            content,
-            flags=re.MULTILINE,
-        )
-        content = re.sub(
-            r"^autd3-link-twincat (.*)",
-            f"autd3-link-twincat {version}",
-            content,
-            flags=re.MULTILINE,
-        )
-    with Path("ThirdPartyNotice.txt").open("w") as f:
-        f.write(content)
+    f = Path("ThirdPartyNotice.txt")
+    content = f.read_text()
+    content = re.sub(
+        r"^autd3(.*) (.*) \((.*)\)",
+        f"autd3\\1 {version} (MIT)",
+        content,
+        flags=re.MULTILINE,
+    )
+    f.write_text(content)
 
     run_command(["cargo", "update"])
 
 
-def util_check_license(_) -> None:
+def util_check_license(_) -> None:  # noqa: ANN001
     run_command(["cargo", "update"])
     with working_dir("tools/license-checker"):
         run_command(["cargo", "r"])
 
 
-def command_help(args) -> None:
+def command_help(args) -> None:  # noqa: ANN001
     print(parser.parse_args([args.command, "--help"]))
 
 
 if __name__ == "__main__":
     with working_dir(Path(__file__).parent):
+        fetch_submodule()
+
         parser = argparse.ArgumentParser(description="autd3capi library build script")
         subparsers = parser.add_subparsers()
 
