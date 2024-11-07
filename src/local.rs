@@ -2,7 +2,6 @@ use std::{
     convert::Infallible,
     ffi::{c_char, CStr, CString},
     num::NonZeroUsize,
-    time::Duration,
 };
 
 use autd3capi_driver::*;
@@ -43,17 +42,17 @@ pub unsafe extern "C" fn AUTDLinkSOEMTracingInitWithFile(path: *const c_char) ->
 pub unsafe extern "C" fn AUTDLinkSOEM(
     ifname: *const c_char,
     buf_size: u32,
-    send_cycle_ns: u64,
-    sync0_cycle_ns: u64,
+    send_cycle: Duration,
+    sync0_cycle: Duration,
     err_handler: ConstPtr,
     err_context: ConstPtr,
     mode: SyncMode,
     process_priority: ProcessPriority,
     thread_priority: ThreadPriorityPtr,
-    state_check_interval_ns: u64,
+    state_check_interval: Duration,
     timer_strategy: TimerStrategy,
-    tolerance_ns: u64,
-    sync_timeout_ns: u64,
+    tolerance: Duration,
+    sync_timeout: Duration,
 ) -> ResultSyncLinkBuilder {
     let ifname = if ifname.is_null() {
         ""
@@ -63,14 +62,14 @@ pub unsafe extern "C" fn AUTDLinkSOEM(
     let builder = SOEM::builder()
         .with_ifname(ifname)
         .with_buf_size(NonZeroUsize::new_unchecked(buf_size as _))
-        .with_send_cycle(Duration::from_nanos(send_cycle_ns))
-        .with_sync0_cycle(Duration::from_nanos(sync0_cycle_ns))
+        .with_send_cycle(send_cycle.into())
+        .with_sync0_cycle(sync0_cycle.into())
         .with_sync_mode(mode)
         .with_thread_priority(*take!(thread_priority, ThreadPriority))
-        .with_state_check_interval(Duration::from_nanos(state_check_interval_ns))
+        .with_state_check_interval(state_check_interval.into())
         .with_timer_strategy(timer_strategy)
-        .with_sync_tolerance(std::time::Duration::from_nanos(tolerance_ns))
-        .with_sync_timeout(std::time::Duration::from_nanos(sync_timeout_ns));
+        .with_sync_tolerance(tolerance.into())
+        .with_sync_timeout(sync_timeout.into());
     let builder = if err_handler.0.is_null() {
         builder
     } else {
