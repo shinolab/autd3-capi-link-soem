@@ -12,19 +12,18 @@ from tools.autd3_build_utils.autd3_build_utils import (
     fetch_submodule,
     rremove,
     run_command,
+    substitute_in_file,
     working_dir,
 )
 
 
 class Config(BaseConfig):
-    release: bool
     target: str | None
     no_examples: bool
 
     def __init__(self, args) -> None:  # noqa: ANN001
-        super().__init__()
+        super().__init__(args)
 
-        self.release = getattr(args, "release", False)
         self.no_examples = getattr(args, "no_examples", False)
         self.features = getattr(args, "features", "") or ""
 
@@ -60,27 +59,21 @@ class Config(BaseConfig):
     def cargo_command(self, subcommands: list[str]) -> list[str]:
         command = []
         if self.target is None:
-            command.append("cargo")
-            command.extend(subcommands)
+            command.extend(["cargo", *subcommands])
         else:
             if self.is_linux():
-                command.append("cross")
-                command.extend(subcommands)
+                command.extend(["cross", *subcommands])
             else:
-                command.append("cargo")
-                command.extend(subcommands)
-            command.append("--target")
-            command.append(self.target)
+                command.extend(["cargo", *subcommands])
+            command.extend(["--target", self.target])
         if self.release:
             command.append("--release")
-        command.append("--features")
-        command.append(self.features)
+        command.extend(["--features", self.features])
         return command
 
     def setup_linker(self) -> None:
         if not self.is_linux() or self.target is None:
             return
-
         Path(".cargo").mkdir(exist_ok=True)
         with Path(".cargo/config").open("w") as f:
             if self.target == "armv7-unknown-linux-gnueabihf":
@@ -132,9 +125,7 @@ def copy_lib(config: Config, dst: str) -> None:
 
 def capi_build(args) -> None:  # noqa: ANN001
     config = Config(args)
-
     run_command(config.cargo_command(["build"]))
-
     Path("bin").mkdir(exist_ok=True)
     copy_dll(config, "bin")
     Path("lib").mkdir(exist_ok=True)
@@ -143,12 +134,8 @@ def capi_build(args) -> None:  # noqa: ANN001
 
 def capi_lint(args) -> None:  # noqa: ANN001
     config = Config(args)
-
     command = config.cargo_command(["clippy"])
-    command.append("--tests")
-    command.append("--")
-    command.append("-D")
-    command.append("warnings")
+    command.extend(["--tests", "--", "-D", "warnings"])
     run_command(command)
 
 
@@ -158,33 +145,19 @@ def capi_clear(_) -> None:  # noqa: ANN001
 
 def util_update_ver(args) -> None:  # noqa: ANN001
     version = args.version
-
-    f = Path("Cargo.toml")
-    content = f.read_text()
-    content = re.sub(
-        r'^version = "(.*?)"',
-        f'version = "{version}"',
-        content,
+    substitute_in_file(
+        "Cargo.toml",
+        [
+            (r'^version = "(.*?)"', f'version = "{version}"'),
+            (r'^autd3(.*)version = "(.*?)"', f'autd3\\1version = "{version}"'),
+        ],
         flags=re.MULTILINE,
     )
-    content = re.sub(
-        r'^autd3(.*)version = "(.*?)"',
-        f'autd3\\1version = "{version}"',
-        content,
+    substitute_in_file(
+        "ThirdPartyNotice.txt",
+        [(r"^autd3(.*) (.*) \((.*)\)", f"autd3\\1 {version} (\\3)")],
         flags=re.MULTILINE,
     )
-    f.write_text(content)
-
-    f = Path("ThirdPartyNotice.txt")
-    content = f.read_text()
-    content = re.sub(
-        r"^autd3(.*) (.*) \((.*)\)",
-        f"autd3\\1 {version} (MIT)",
-        content,
-        flags=re.MULTILINE,
-    )
-    f.write_text(content)
-
     run_command(["cargo", "update"])
 
 
