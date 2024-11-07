@@ -18,7 +18,7 @@ aho-corasick 1.1.3 (MIT OR Unlicense)
 https://github.com/BurntSushi/aho-corasick
 ---------------------------------------------------------
 
-anyhow 1.0.92 (Apache-2.0 OR MIT)
+anyhow 1.0.93 (Apache-2.0 OR MIT)
 https://github.com/dtolnay/anyhow
 ---------------------------------------------------------
 
@@ -152,10 +152,6 @@ https://github.com/crossbeam-rs/crossbeam
 
 deranged 0.3.11 (Apache-2.0 OR MIT)
 https://github.com/jhpratt/deranged
----------------------------------------------------------
-
-derivative 2.2.0 (Apache-2.0 OR MIT)
-https://github.com/mcarton/rust-derivative
 ---------------------------------------------------------
 
 derive-new 0.7.0 (MIT)
@@ -530,10 +526,6 @@ spin_sleep 1.2.1 (Apache-2.0)
 https://github.com/alexheretic/spin-sleep
 ---------------------------------------------------------
 
-syn 1.0.109 (Apache-2.0 OR MIT)
-https://github.com/dtolnay/syn
----------------------------------------------------------
-
 syn 2.0.87 (Apache-2.0 OR MIT)
 https://github.com/dtolnay/syn
 ---------------------------------------------------------
@@ -550,11 +542,11 @@ ta 0.5.0 (MIT)
 https://github.com/greyblake/ta-rs
 ---------------------------------------------------------
 
-thiserror 1.0.68 (Apache-2.0 OR MIT)
+thiserror 2.0.0 (Apache-2.0 OR MIT)
 https://github.com/dtolnay/thiserror
 ---------------------------------------------------------
 
-thiserror-impl 1.0.68 (Apache-2.0 OR MIT)
+thiserror-impl 2.0.0 (Apache-2.0 OR MIT)
 https://github.com/dtolnay/thiserror
 ---------------------------------------------------------
 
