@@ -98,26 +98,26 @@ pub unsafe extern "C" fn AUTDLinkSOEM(
 #[allow(unused_variables)]
 pub unsafe extern "C" fn AUTDLinkSOEMIsDefault(
     buf_size: u32,
-    send_cycle_ns: u64,
-    sync0_cycle_ns: u64,
+    send_cycle: Duration,
+    sync0_cycle: Duration,
     mode: SyncMode,
     process_priority: ProcessPriority,
     thread_priority: ThreadPriorityPtr,
-    state_check_interval_ns: u64,
+    state_check_interval: Duration,
     timer_strategy: TimerStrategy,
-    tolerance_ns: u64,
-    sync_timeout_ns: u64,
+    tolerance: Duration,
+    sync_timeout: Duration,
 ) -> bool {
     let default = SOEM::builder();
     let res = buf_size as usize == default.buf_size().get()
-        && send_cycle_ns as u128 == default.send_cycle().as_nanos()
-        && sync0_cycle_ns as u128 == default.sync0_cycle().as_nanos()
+        && std::time::Duration::from(send_cycle) == default.send_cycle()
+        && std::time::Duration::from(sync0_cycle) == default.sync0_cycle()
         && mode == default.sync_mode()
         && *take!(thread_priority, ThreadPriority) == default.thread_priority()
-        && state_check_interval_ns as u128 == default.state_check_interval().as_nanos()
+        && std::time::Duration::from(state_check_interval) == default.state_check_interval()
         && timer_strategy == default.timer_strategy()
-        && tolerance_ns as u128 == default.sync_tolerance().as_nanos()
-        && sync_timeout_ns as u128 == default.sync_timeout().as_nanos();
+        && std::time::Duration::from(tolerance) == default.sync_tolerance()
+        && std::time::Duration::from(sync_timeout) == default.sync_timeout();
     #[cfg(target_os = "windows")]
     let res = res && process_priority == default.process_priority();
     res
