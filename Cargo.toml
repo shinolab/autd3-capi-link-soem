@@ -13,7 +13,7 @@ crate-type = ["cdylib", "staticlib"]
 unity = ["autd3capi-driver/unity"]
 
 [dependencies]
-autd3capi-driver = { version = "29.0.0-rc.8" }
+autd3capi-driver = { version = "29.0.0-rc.8.1" }
 autd3-link-soem = { version = "29.0.0-rc.8", features = ["local", "remote", "async-trait"] }
 thread-priority = "1.1.0"
 tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }

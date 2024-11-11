@@ -78,7 +78,7 @@ autd3-protobuf 29.0.0-rc.8 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3capi-driver 29.0.0-rc.8 (MIT)
+autd3capi-driver 29.0.0-rc.8.1 (MIT)
 https://github.com/shinolab/autd3-capi
 ---------------------------------------------------------
 

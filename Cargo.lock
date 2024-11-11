@@ -235,9 +235,9 @@ dependencies = [
 
 [[package]]
 name = "autd3capi-driver"
-version = "29.0.0-rc.8"
+version = "29.0.0-rc.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a9bc4c1426b4f0c7a6d3c360af170fdeb456d0f56bc33cf2ce43155d83af7852"
+checksum = "3fed132d16b6e59bd683fe7993eadba4bda1f8187396a0b8c3170bb342abdd76"
 dependencies = [
  "async-ffi",
  "autd3",
