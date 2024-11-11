@@ -125,7 +125,7 @@ def copy_lib(config: Config, dst: str) -> None:
 
 def capi_build(args) -> None:  # noqa: ANN001
     config = Config(args)
-    run_command(config.cargo_command(["build"]))
+    run_command(config.cargo_command(["build", "--locked"]))
     Path("bin").mkdir(exist_ok=True)
     copy_dll(config, "bin")
     Path("lib").mkdir(exist_ok=True)
