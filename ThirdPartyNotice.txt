@@ -614,10 +614,6 @@ tracing-core 0.1.32 (MIT)
 https://github.com/tokio-rs/tracing
 ---------------------------------------------------------
 
-tracing-log 0.2.0 (MIT)
-https://github.com/tokio-rs/tracing
----------------------------------------------------------
-
 tracing-subscriber 0.3.18 (MIT)
 https://github.com/tokio-rs/tracing
 ---------------------------------------------------------
@@ -640,10 +636,6 @@ https://github.com/dtolnay/unicode-ident
 
 unicode-xid 0.2.6 (Apache-2.0 OR MIT)
 https://github.com/unicode-rs/unicode-xid
----------------------------------------------------------
-
-valuable 0.1.0 (MIT)
-https://github.com/tokio-rs/valuable
 ---------------------------------------------------------
 
 want 0.3.1 (MIT)
