@@ -149,7 +149,7 @@ def util_update_ver(args) -> None:  # noqa: ANN001
         "Cargo.toml",
         [
             (r'^version = "(.*?)"', f'version = "{version}"'),
-            (r'^autd3(.*)version = "(.*?)"', f'autd3\\1version = "{version}"'),
+            (r'^autd3(.*)version = "=(.*?)"', f'autd3\\1version = "={version}"'),
         ],
         flags=re.MULTILINE,
     )
