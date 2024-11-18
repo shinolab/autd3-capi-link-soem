@@ -1,6 +1,6 @@
 [package]
 name = "autd3capi-link-soem"
-version = "29.0.0-rc.8"
+version = "29.0.0-rc.9"
 authors = ["shun suzuki <suzuki@hapis.k.u-tokyo.ac.jp>"]
 edition = "2021"
 license = "MIT"
@@ -13,8 +13,8 @@ crate-type = ["cdylib", "staticlib"]
 unity = ["autd3capi-driver/unity"]
 
 [dependencies]
-autd3capi-driver = { version = "29.0.0-rc.8.1" }
-autd3-link-soem = { version = "29.0.0-rc.8", features = ["local", "remote", "async-trait"] }
-thread-priority = "1.1.0"
-tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
-tracing = "0.1.40"
+autd3capi-driver = { version = "=29.0.0-rc.9" }
+autd3-link-soem = { version = "=29.0.0-rc.9", features = ["local", "remote", "async-trait"] }
+thread-priority = "=1.2.0"
+tracing-subscriber = { version = "=0.3.18", features = ["env-filter"] }
+tracing = "=0.1.40"
