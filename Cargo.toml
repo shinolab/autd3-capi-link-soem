@@ -16,5 +16,5 @@ unity = ["autd3capi-driver/unity"]
 autd3capi-driver = { version = "=29.0.0-rc.10" }
 autd3-link-soem = { version = "=29.0.0-rc.10", features = ["async-trait", "remote"] }
 thread-priority = "=1.2.0"
-tracing-subscriber = { version = "=0.3.18", features = ["ansi", "env-filter"], default-features = false }
+tracing-subscriber = { version = "=0.3.19", features = ["ansi", "env-filter"], default-features = false }
 tracing = { version = "=0.1.41", default-features = false }
