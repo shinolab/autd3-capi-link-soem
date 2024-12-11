@@ -8,5 +8,5 @@ edition = "2021"
 [dependencies]
 anyhow = "1.0.75"
 autd3-license-check = { path = "../autd3-license-check" }
-cargo-license = "0.5.1"
-cargo_metadata = "0.15.4"
+cargo-license = "0.6.1"
+cargo_metadata = "0.18.1"
