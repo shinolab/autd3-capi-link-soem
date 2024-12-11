@@ -610,7 +610,7 @@ tracing-core 0.1.33 (MIT)
 https://github.com/tokio-rs/tracing
 ---------------------------------------------------------
 
-tracing-subscriber 0.3.18 (MIT)
+tracing-subscriber 0.3.19 (MIT)
 https://github.com/tokio-rs/tracing
 ---------------------------------------------------------
 
