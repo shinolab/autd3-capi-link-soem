@@ -6,9 +6,7 @@ use std::{
 
 use autd3capi_driver::*;
 
-use autd3_link_soem::{
-    local::link_soem::*, local::ProcessPriority, SyncMode, ThreadPriority, TimerStrategy,
-};
+use autd3_link_soem::{local::ProcessPriority, local::*, SyncMode, ThreadPriority, TimerStrategy};
 
 use crate::{status::Status, thread_priority::ThreadPriorityPtr};
 
