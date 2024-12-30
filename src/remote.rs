@@ -2,7 +2,7 @@ use std::{ffi::c_char, net::SocketAddr};
 
 use autd3capi_driver::*;
 
-use autd3_link_soem::remote::link_soem_remote::*;
+use autd3_link_soem::remote::*;
 
 #[no_mangle]
 #[must_use]
