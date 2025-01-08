@@ -37,16 +37,25 @@ jobs:
         include:
           - os: windows-latest
             arch: x64
+            lint: true
           - os: windows-latest
             arch: aarch64
           - os: ubuntu-latest
             arch: x64
+            lint: true
           - os: ubuntu-latest
             arch: armv7
           - os: ubuntu-latest
             arch: aarch64
           - os: macos-latest
             arch: aarch64
+            lint: true
+          - os: ubuntu-latest
+            arch: x64
+            features: "unity"
+          - os: ubuntu-latest
+            arch: x64
+            features: "unity dynamic_freq"
     steps:
       - uses: actions/checkout@v4
         with:
@@ -55,23 +64,11 @@ jobs:
         with:
           os: ${{ matrix.os }}
           arch: ${{ matrix.arch }}
-      - run: python3 build.py build --arch ${{ matrix.arch }}
+      - run: python3 build.py build --arch ${{ matrix.arch }} --features "${{ matrix.features }}"
         shell: bash
-
-  lint:
-    needs: changed-files
-    if: ${{ needs.changed-files.outputs.src == 'true' }}
-    name: lint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: true
-      - uses: ./.github/actions/setup-build
-        with:
-          os: ubuntu-latest
-      - run: |
-          python3 build.py lint
+      - run: python3 build.py lint --features "${{ matrix.features }}"
+        if: ${{ matrix.lint == true }}
+        shell: bash
 
   all-tests-passed:
     if: ${{ always() }}
@@ -85,7 +82,6 @@ jobs:
   auto-merge:
     needs:
       - test
-      - lint
     permissions:
       pull-requests: write
       contents: write
