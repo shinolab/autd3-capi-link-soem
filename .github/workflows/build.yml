@@ -52,9 +52,6 @@ jobs:
             lint: true
           - os: ubuntu-latest
             arch: x64
-            features: "static"
-          - os: ubuntu-latest
-            arch: x64
             features: "unity"
           - os: ubuntu-latest
             arch: x64
