@@ -126,7 +126,7 @@ pub unsafe extern "C" fn AUTDLinkSOEMIsDefault(
 pub unsafe extern "C" fn AUTDLinkSOEMStatusGetMsg(src: Status, dst: *mut c_char) -> u32 {
     let msg = format!("{}", autd3_link_soem::Status::from(src));
     if dst.is_null() {
-        return msg.as_bytes().len() as u32 + 1;
+        return msg.len() as u32 + 1;
     }
     let c_string = CString::new(msg).unwrap();
     let c_str: &CStr = c_string.as_c_str();
