@@ -51,11 +51,11 @@ pub unsafe extern "C" fn AUTDLinkSOEM(
     timer_strategy: TimerStrategy,
     tolerance: Duration,
     sync_timeout: Duration,
-) -> ResultSyncLinkBuilder {
+) -> ResultLinkBuilder {
     let ifname = if ifname.is_null() {
         ""
     } else {
-        validate_cstr!(ifname, SyncLinkBuilderPtr, ResultSyncLinkBuilder)
+        validate_cstr!(ifname, LinkBuilderPtr, ResultLinkBuilder)
     };
     let builder = SOEM::builder()
         .with_ifname(ifname)
