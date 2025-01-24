@@ -1,5 +1,4 @@
 use std::{
-    convert::Infallible,
     ffi::{c_char, CStr, CString},
     num::NonZeroUsize,
 };
@@ -35,90 +34,82 @@ pub unsafe extern "C" fn AUTDLinkSOEMTracingInitWithFile(path: *const c_char) ->
         .into()
 }
 
+#[repr(C)]
+pub struct SOEMOption {
+    pub ifname: *const c_char,
+    pub buf_size: u32,
+    pub send_cycle: Duration,
+    pub sync0_cycle: Duration,
+    pub sync_mode: SyncMode,
+    pub process_priority: ProcessPriority,
+    pub thread_priority: ThreadPriorityPtr,
+    pub state_check_interval: Duration,
+    pub timer_strategy: TimerStrategy,
+    pub sync_tolerance: Duration,
+    pub sync_timeout: Duration,
+}
+
+impl TryFrom<SOEMOption> for autd3_link_soem::SOEMOption {
+    type Error = std::str::Utf8Error;
+
+    fn try_from(value: SOEMOption) -> Result<Self, Self::Error> {
+        unsafe {
+            let ifname = if value.ifname.is_null() {
+                String::new()
+            } else {
+                std::ffi::CStr::from_ptr(value.ifname).to_str()?.to_string()
+            };
+            Ok(autd3_link_soem::SOEMOption {
+                ifname,
+                buf_size: NonZeroUsize::new_unchecked(value.buf_size as _),
+                send_cycle: value.send_cycle.into(),
+                sync0_cycle: value.sync0_cycle.into(),
+                sync_mode: value.sync_mode,
+                #[cfg(target_os = "windows")]
+                process_priority: value.process_priority,
+                thread_priority: *take!(value.thread_priority, ThreadPriority),
+                state_check_interval: value.state_check_interval.into(),
+                timer_strategy: value.timer_strategy,
+                sync_tolerance: value.sync_tolerance.into(),
+                sync_timeout: value.sync_timeout.into(),
+            })
+        }
+    }
+}
+
 #[no_mangle]
 #[must_use]
 pub unsafe extern "C" fn AUTDLinkSOEM(
-    ifname: *const c_char,
-    buf_size: u32,
-    send_cycle: Duration,
-    sync0_cycle: Duration,
     err_handler: ConstPtr,
     err_context: ConstPtr,
-    mode: SyncMode,
-    process_priority: ProcessPriority,
-    thread_priority: ThreadPriorityPtr,
-    state_check_interval: Duration,
-    timer_strategy: TimerStrategy,
-    tolerance: Duration,
-    sync_timeout: Duration,
+    option: SOEMOption,
 ) -> ResultLinkBuilder {
-    let ifname = if ifname.is_null() {
-        ""
-    } else {
-        validate_cstr!(ifname, LinkBuilderPtr, ResultLinkBuilder)
-    };
-    let builder = SOEM::builder()
-        .with_ifname(ifname)
-        .with_buf_size(NonZeroUsize::new_unchecked(buf_size as _))
-        .with_send_cycle(send_cycle.into())
-        .with_sync0_cycle(sync0_cycle.into())
-        .with_sync_mode(mode)
-        .with_thread_priority(*take!(thread_priority, ThreadPriority))
-        .with_state_check_interval(state_check_interval.into())
-        .with_timer_strategy(timer_strategy)
-        .with_sync_tolerance(tolerance.into())
-        .with_sync_timeout(sync_timeout.into());
-    let builder = if err_handler.0.is_null() {
-        builder
-    } else {
-        let out_func = move |slave: usize, status: autd3_link_soem::Status| {
-            let (out_f, context) = {
-                (
-                    std::mem::transmute::<ConstPtr, unsafe extern "C" fn(ConstPtr, u32, Status)>(
-                        err_handler,
-                    ),
-                    err_context,
-                )
-            };
-            out_f(context, slave as _, status.into());
+    let out_func = move |slave: usize, status: autd3_link_soem::Status| {
+        let (out_f, context) = {
+            (
+                std::mem::transmute::<ConstPtr, unsafe extern "C" fn(ConstPtr, u32, Status)>(
+                    err_handler,
+                ),
+                err_context,
+            )
         };
-        builder.with_err_handler(out_func)
+        out_f(context, slave as _, status.into());
     };
-    #[cfg(target_os = "windows")]
-    let builder = builder.with_process_priority(process_priority);
-    #[cfg(not(target_os = "windows"))]
-    let _ = process_priority;
-    Result::<_, Infallible>::Ok(builder).into()
+    option
+        .try_into()
+        .map(|option| SOEM::builder(out_func, option))
+        .into()
 }
 
 #[no_mangle]
 #[must_use]
 #[allow(unused_variables)]
-pub unsafe extern "C" fn AUTDLinkSOEMIsDefault(
-    buf_size: u32,
-    send_cycle: Duration,
-    sync0_cycle: Duration,
-    mode: SyncMode,
-    process_priority: ProcessPriority,
-    thread_priority: ThreadPriorityPtr,
-    state_check_interval: Duration,
-    timer_strategy: TimerStrategy,
-    tolerance: Duration,
-    sync_timeout: Duration,
-) -> bool {
-    let default = SOEM::builder();
-    let res = buf_size as usize == default.buf_size().get()
-        && std::time::Duration::from(send_cycle) == default.send_cycle()
-        && std::time::Duration::from(sync0_cycle) == default.sync0_cycle()
-        && mode == default.sync_mode()
-        && *take!(thread_priority, ThreadPriority) == default.thread_priority()
-        && std::time::Duration::from(state_check_interval) == default.state_check_interval()
-        && timer_strategy == default.timer_strategy()
-        && std::time::Duration::from(tolerance) == default.sync_tolerance()
-        && std::time::Duration::from(sync_timeout) == default.sync_timeout();
-    #[cfg(target_os = "windows")]
-    let res = res && process_priority == default.process_priority();
-    res
+pub unsafe extern "C" fn AUTDLinkSOEMIsDefault(option: SOEMOption) -> bool {
+    option
+        .try_into()
+        .is_ok_and(|option: autd3_link_soem::SOEMOption| {
+            option == autd3_link_soem::SOEMOption::default()
+        })
 }
 
 #[no_mangle]
