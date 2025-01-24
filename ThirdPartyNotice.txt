@@ -42,39 +42,39 @@ atomic-waker 1.1.2 (Apache-2.0 OR MIT)
 https://github.com/smol-rs/atomic-waker
 ---------------------------------------------------------
 
-autd3 29.0.0-rc.16 (MIT)
+autd3 29.0.0-rc.17 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3-core 29.0.0-rc.16 (MIT)
+autd3-core 29.0.0-rc.17 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3-derive 29.0.0-rc.16 (MIT)
+autd3-derive 29.0.0-rc.17 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3-driver 29.0.0-rc.16 (MIT)
+autd3-driver 29.0.0-rc.17 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3-firmware-emulator 29.0.0-rc.16 (MIT)
+autd3-firmware-emulator 29.0.0-rc.17 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3-link-soem 29.0.0-rc.16 (MIT)
+autd3-link-soem 29.0.0-rc.17.2 (MIT)
 https://github.com/shinolab/autd3-link-soem
 ---------------------------------------------------------
 
-autd3-protobuf 29.0.0-rc.16 (MIT)
+autd3-protobuf 29.0.0-rc.17 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3capi-driver 29.0.0-rc.16 (MIT)
+autd3capi-driver 29.0.0-rc.17 (MIT)
 https://github.com/shinolab/autd3-capi
 ---------------------------------------------------------
 
-autd3capi-link-soem 29.0.0-rc.16 (MIT)
+autd3capi-link-soem 29.0.0-rc.17 (MIT)
 https://github.com/shinolab/autd3-capi-link-soem
 ---------------------------------------------------------
 
@@ -194,6 +194,10 @@ getrandom 0.2.15 (Apache-2.0 OR MIT)
 https://github.com/rust-random/getrandom
 ---------------------------------------------------------
 
+getset 0.1.4 (MIT)
+https://github.com/jbaublitz/getset
+---------------------------------------------------------
+
 gimli 0.31.1 (Apache-2.0 OR MIT)
 https://github.com/gimli-rs/gimli
 ---------------------------------------------------------
@@ -246,7 +250,7 @@ indexmap 1.9.3 (Apache-2.0 OR MIT)
 https://github.com/bluss/indexmap
 ---------------------------------------------------------
 
-indexmap 2.7.0 (Apache-2.0 OR MIT)
+indexmap 2.7.1 (Apache-2.0 OR MIT)
 https://github.com/indexmap-rs/indexmap
 ---------------------------------------------------------
 
@@ -294,10 +298,6 @@ mime 0.3.17 (Apache-2.0 OR MIT)
 https://github.com/hyperium/mime
 ---------------------------------------------------------
 
-minimal-lexical 0.2.1 (Apache-2.0 OR MIT)
-https://github.com/Alexhuszagh/minimal-lexical
----------------------------------------------------------
-
 miniz_oxide 0.8.3 (Apache-2.0 OR MIT OR Zlib)
 https://github.com/Frommi/miniz_oxide/tree/master/miniz_oxide
 ---------------------------------------------------------
@@ -312,10 +312,6 @@ https://github.com/dimforge/nalgebra
 
 nalgebra-macros 0.2.2 (Apache-2.0)
 https://github.com/dimforge/nalgebra
----------------------------------------------------------
-
-nom 7.1.3 (MIT)
-https://github.com/Geal/nom
 ---------------------------------------------------------
 
 nu-ansi-term 0.46.0 (MIT)
@@ -396,6 +392,14 @@ https://github.com/jhpratt/powerfmt
 
 ppv-lite86 0.2.20 (Apache-2.0 OR MIT)
 https://github.com/cryptocorrosion/cryptocorrosion
+---------------------------------------------------------
+
+proc-macro-error-attr2 2.0.0 (Apache-2.0 OR MIT)
+https://github.com/GnomedDev/proc-macro-error-2
+---------------------------------------------------------
+
+proc-macro-error2 2.0.1 (Apache-2.0 OR MIT)
+https://github.com/GnomedDev/proc-macro-error-2
 ---------------------------------------------------------
 
 proc-macro2 1.0.93 (Apache-2.0 OR MIT)
@@ -602,15 +606,11 @@ try-lock 0.2.5 (MIT)
 https://github.com/seanmonstar/try-lock
 ---------------------------------------------------------
 
-tynm 0.1.10 (Apache-2.0 OR MIT)
-https://github.com/azriel91/tynm
----------------------------------------------------------
-
 typenum 1.17.0 (Apache-2.0 OR MIT)
 https://github.com/paholg/typenum
 ---------------------------------------------------------
 
-unicode-ident 1.0.14 ((MIT OR Apache-2.0) AND Unicode-3.0)
+unicode-ident 1.0.15 ((MIT OR Apache-2.0) AND Unicode-3.0)
 https://github.com/dtolnay/unicode-ident
 ---------------------------------------------------------
 
@@ -1186,7 +1186,8 @@ FILES OR SOFTWARE.
 Except as contained in this notice, the name of a copyright holder shall
 not be used in advertising or otherwise to promote the sale, use or other
 dealings in these Data Files or Software without prior written
-authorization of the copyright holder.---------------------------------------------------------
+authorization of the copyright holder.
+---------------------------------------------------------
 
 Zlib
 

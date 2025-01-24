@@ -10,37 +10,36 @@ jobs:
     runs-on: ubuntu-latest
     name: check-license
     steps:
-    - uses: actions/checkout@v4
-      with:
-        submodules: true
-    - uses: actions/setup-python@v5
-      with:
-        python-version: "3.13"
-    - run: |
-        python3 build.py util check-license
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-make
+      - run: cargo make license
 
   create-release:
     needs: [license-check]
     name: create-github-release
     runs-on: ubuntu-latest
     steps:
-    - id: create_release
-      uses: ncipollo/release-action@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        draft: false
-        prerelease: false
-    - run: |
-        echo "${{ steps.create_release.outputs.upload_url }}" > release_url.txt
-        echo "${{ steps.create_release.outputs.id }}" > release_id.txt
-    - uses: actions/upload-artifact@v4
-      with:
-        name: release_url
-        path: release_url.txt
-    - uses: actions/upload-artifact@v4
-      with:
-        name: release_id
-        path: release_id.txt
+      - id: create_release
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          draft: false
+          prerelease: false
+      - run: |
+          echo "${{ steps.create_release.outputs.upload_url }}" > release_url.txt
+          echo "${{ steps.create_release.outputs.id }}" > release_id.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release_url
+          path: release_url.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release_id
+          path: release_id.txt
 
   publish-release:
     needs: [create-release]
@@ -53,35 +52,18 @@ jobs:
           - os: windows-latest
             name: win
             arch: x64
-            unity: true
           - os: windows-latest
             name: win
             arch: aarch64
-            unity: true
           - os: ubuntu-latest
             name: linux
             arch: x64
-            unity: true
-          - os: ubuntu-latest
-            name: linux
-            arch: armv7
-            unity: false
-          - os: ubuntu-latest
-            name: linux
-            arch: aarch64
-            unity: false
           - os: macos-latest
             name: macos
             arch: aarch64
-            unity: true
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: true
       - uses: ./.github/actions/setup-build
-        with:
-          os: ${{ matrix.os }}
-          arch: ${{ matrix.arch }}
       - id: get_version
         uses: actions/github-script@v7
         with:
@@ -89,38 +71,29 @@ jobs:
           result-encoding: string
           script: |
             return 'autd3-link-soem-'+context.payload.ref.replace(/refs\/tags\//, '')+'-${{ matrix.name }}-${{ matrix.arch }}';
-      - run: |
-          python3 build.py build --release --arch ${{ matrix.arch }}
-          Compress-Archive -Path LICENSE, lib, ThirdPartyNotice.txt -DestinationPath assets-static.zip
+      
+      - run: cargo make publish --features "unity"
+      - run: Compress-Archive -Path LICENSE, bin, ThirdPartyNotice.txt -DestinationPath assets-unity.zip
         if: ${{ matrix.os == 'windows-latest' }}
+      - run: tar -zcvf assets-unity.tar.gz bin LICENSE ThirdPartyNotice.txt
+        if: ${{ matrix.os != 'windows-latest'}}
+
+      - run: cargo make publish --features "unity dynamic_freq"
+      - run: Compress-Archive -Path LICENSE, bin, ThirdPartyNotice.txt -DestinationPath assets-unity-dynamic_freq.zip
+        if: ${{ matrix.os == 'windows-latest' }}
+      - run: tar -zcvf assets-unity-dynamic_freq.tar.gz bin LICENSE ThirdPartyNotice.txt
+        if: ${{ matrix.os != 'windows-latest'}}
+        
+      - run: cargo make publish
       - run: |
-          python3 build.py build --release --arch ${{ matrix.arch }} --features "unity"
-          Compress-Archive -Path LICENSE, bin, ThirdPartyNotice.txt -DestinationPath assets-unity.zip
-        if: ${{ matrix.os == 'windows-latest' && matrix.unity }}
-      - run: |
-          python3 build.py build --release --arch ${{ matrix.arch }} --features "unity dynamic_freq"
-          Compress-Archive -Path LICENSE, bin, ThirdPartyNotice.txt -DestinationPath assets-unity-dynamic_freq.zip
-        if: ${{ matrix.os == 'windows-latest' && matrix.unity }}
-      - run: |
-          python3 build.py build --release --arch ${{ matrix.arch }}
+          Compress-Archive -Path LICENSE, lib, ThirdPartyNotice.txt -DestinationPath assets-static.zip
           Compress-Archive -Path LICENSE, bin, ThirdPartyNotice.txt -DestinationPath assets-shared.zip
         if: ${{ matrix.os == 'windows-latest' }}
       - run: |
-          python3 build.py build --release --arch ${{ matrix.arch }}
           tar -zcvf assets-static.tar.gz lib LICENSE ThirdPartyNotice.txt
-        if: ${{ matrix.os != 'windows-latest' }}
-      - run: |
-          python3 build.py build --release --arch ${{ matrix.arch }} --features "unity"
-          tar -zcvf assets-unity.tar.gz bin LICENSE ThirdPartyNotice.txt
-        if: ${{ matrix.os != 'windows-latest' && matrix.unity }}
-      - run: |
-          python3 build.py build --release --arch ${{ matrix.arch }} --features "unity dynamic_freq"
-          tar -zcvf assets-unity-dynamic_freq.tar.gz bin LICENSE ThirdPartyNotice.txt
-        if: ${{ matrix.os != 'windows-latest' && matrix.unity }}
-      - run: |
-          python3 build.py build --release --arch ${{ matrix.arch }}
           tar -zcvf assets-shared.tar.gz bin LICENSE ThirdPartyNotice.txt
-        if: ${{ matrix.os != 'windows-latest' }}
+        if: ${{ matrix.os != 'windows-latest'}}
+
       - uses: actions/download-artifact@v4
         with:
           name: release_url
@@ -149,7 +122,6 @@ jobs:
           asset_path: ./assets-unity.${{ matrix.os == 'windows-latest' && 'zip' || 'tar.gz' }}
           asset_name: ${{ steps.get_version.outputs.result }}-unity.${{ matrix.os == 'windows-latest' && 'zip' || 'tar.gz' }}
           asset_content_type: ${{ matrix.os == 'windows-latest' && 'application/zip' || 'application/octet-stream' }}
-        if: ${{ matrix.unity }} 
       - uses: shogo82148/actions-upload-release-asset@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -157,4 +129,3 @@ jobs:
           asset_path: ./assets-unity-dynamic_freq.${{ matrix.os == 'windows-latest' && 'zip' || 'tar.gz' }}
           asset_name: ${{ steps.get_version.outputs.result }}-unity-dynamic_freq.${{ matrix.os == 'windows-latest' && 'zip' || 'tar.gz' }}
           asset_content_type: ${{ matrix.os == 'windows-latest' && 'application/zip' || 'application/octet-stream' }}
-        if: ${{ matrix.unity }} 
