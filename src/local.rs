@@ -7,7 +7,7 @@ use autd3capi_driver::*;
 
 use autd3_link_soem::{local::ProcessPriority, local::*, SyncMode, ThreadPriority, TimerStrategy};
 
-use crate::{status::Status, thread_priority::ThreadPriorityPtr};
+use crate::thread_priority::ThreadPriorityPtr;
 
 #[no_mangle]
 pub unsafe extern "C" fn AUTDLinkSOEMTracingInit() {
@@ -84,7 +84,7 @@ pub unsafe extern "C" fn AUTDLinkSOEM(
     err_context: ConstPtr,
     option: SOEMOption,
 ) -> ResultLink {
-    let out_func = move |slave: usize, status: autd3_link_soem::Status| {
+    let out_func = move |slave: usize, status: Status| {
         let (out_f, context) = {
             (
                 std::mem::transmute::<ConstPtr, unsafe extern "C" fn(ConstPtr, u32, Status)>(
@@ -93,7 +93,7 @@ pub unsafe extern "C" fn AUTDLinkSOEM(
                 err_context,
             )
         };
-        out_f(context, slave as _, status.into());
+        out_f(context, slave as _, status);
     };
     option
         .try_into()
@@ -115,7 +115,7 @@ pub unsafe extern "C" fn AUTDLinkSOEMIsDefault(option: SOEMOption) -> bool {
 #[no_mangle]
 #[must_use]
 pub unsafe extern "C" fn AUTDLinkSOEMStatusGetMsg(src: Status, dst: *mut c_char) -> u32 {
-    let msg = format!("{}", autd3_link_soem::Status::from(src));
+    let msg = format!("{}", src);
     if dst.is_null() {
         return msg.len() as u32 + 1;
     }
