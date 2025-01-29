@@ -42,39 +42,39 @@ atomic-waker 1.1.2 (Apache-2.0 OR MIT)
 https://github.com/smol-rs/atomic-waker
 ---------------------------------------------------------
 
-autd3 29.0.0-rc.17 (MIT)
+autd3 29.0.0-rc.18 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3-core 29.0.0-rc.17 (MIT)
+autd3-core 29.0.0-rc.18 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3-derive 29.0.0-rc.17 (MIT)
+autd3-derive 29.0.0-rc.18 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3-driver 29.0.0-rc.17 (MIT)
+autd3-driver 29.0.0-rc.18 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3-firmware-emulator 29.0.0-rc.17 (MIT)
+autd3-firmware-emulator 29.0.0-rc.18 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3-link-soem 29.0.0-rc.17.2 (MIT)
+autd3-link-soem 29.0.0-rc.18 (MIT)
 https://github.com/shinolab/autd3-link-soem
 ---------------------------------------------------------
 
-autd3-protobuf 29.0.0-rc.17 (MIT)
+autd3-protobuf 29.0.0-rc.18 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3capi-driver 29.0.0-rc.17 (MIT)
+autd3capi-driver 29.0.0-rc.18 (MIT)
 https://github.com/shinolab/autd3-capi
 ---------------------------------------------------------
 
-autd3capi-link-soem 29.0.0-rc.17 (MIT)
+autd3capi-link-soem 29.0.0-rc.18 (MIT)
 https://github.com/shinolab/autd3-capi-link-soem
 ---------------------------------------------------------
 
@@ -98,7 +98,7 @@ bit-vec 0.8.0 (Apache-2.0 OR MIT)
 https://github.com/contain-rs/bit-vec
 ---------------------------------------------------------
 
-bitfield-struct 0.10.0 (MIT)
+bitfield-struct 0.10.1 (MIT)
 https://github.com/wrenger/bitfield-struct-rs.git
 ---------------------------------------------------------
 
@@ -226,7 +226,7 @@ http-body-util 0.1.2 (MIT)
 https://github.com/hyperium/http-body
 ---------------------------------------------------------
 
-httparse 1.9.5 (Apache-2.0 OR MIT)
+httparse 1.10.0 (Apache-2.0 OR MIT)
 https://github.com/seanmonstar/httparse
 ---------------------------------------------------------
 
@@ -234,7 +234,7 @@ httpdate 1.0.3 (Apache-2.0 OR MIT)
 https://github.com/pyfisch/httpdate
 ---------------------------------------------------------
 
-hyper 1.5.2 (MIT)
+hyper 1.6.0 (MIT)
 https://github.com/hyperium/hyper
 ---------------------------------------------------------
 
@@ -610,7 +610,7 @@ typenum 1.17.0 (Apache-2.0 OR MIT)
 https://github.com/paholg/typenum
 ---------------------------------------------------------
 
-unicode-ident 1.0.15 ((MIT OR Apache-2.0) AND Unicode-3.0)
+unicode-ident 1.0.16 ((MIT OR Apache-2.0) AND Unicode-3.0)
 https://github.com/dtolnay/unicode-ident
 ---------------------------------------------------------
 

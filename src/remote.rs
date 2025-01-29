@@ -6,11 +6,11 @@ use autd3_link_soem::remote::*;
 
 #[no_mangle]
 #[must_use]
-pub unsafe extern "C" fn AUTDLinkRemoteSOEM(addr: *const c_char) -> ResultLinkBuilder {
+pub unsafe extern "C" fn AUTDLinkRemoteSOEM(addr: *const c_char) -> ResultLink {
     let addr = if addr.is_null() {
         ""
     } else {
-        validate_cstr!(addr, LinkBuilderPtr, ResultLinkBuilder)
+        validate_cstr!(addr, LinkPtr, ResultLink)
     };
-    addr.parse::<SocketAddr>().map(RemoteSOEM::builder).into()
+    addr.parse::<SocketAddr>().map(RemoteSOEM::new).into()
 }
