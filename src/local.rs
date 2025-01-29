@@ -83,7 +83,7 @@ pub unsafe extern "C" fn AUTDLinkSOEM(
     err_handler: ConstPtr,
     err_context: ConstPtr,
     option: SOEMOption,
-) -> ResultLinkBuilder {
+) -> ResultLink {
     let out_func = move |slave: usize, status: autd3_link_soem::Status| {
         let (out_f, context) = {
             (
@@ -97,7 +97,7 @@ pub unsafe extern "C" fn AUTDLinkSOEM(
     };
     option
         .try_into()
-        .map(|option| SOEM::builder(out_func, option))
+        .map(|option| SOEM::new(out_func, option))
         .into()
 }
 

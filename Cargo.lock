@@ -82,9 +82,9 @@ checksum = "1505bd5d3d116872e7271a6d4e16d81d0c8570876c8de68093a09ac269d8aac0"
 
 [[package]]
 name = "autd3"
-version = "29.0.0-rc.17"
+version = "29.0.0-rc.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "26c80d200c86a5e16db4f1bb120c6541926ff71f2a990963a7f3c8a8409133e5"
+checksum = "80f6dbbc26b47ff837c4a7ce36566159b38dd59481300fd9fb6b28ea8497eb32"
 dependencies = [
  "autd3-core",
  "autd3-derive",
@@ -106,9 +106,9 @@ dependencies = [
 
 [[package]]
 name = "autd3-core"
-version = "29.0.0-rc.17"
+version = "29.0.0-rc.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ca784da34825c82733468cba3b64d4dcee6f4f8ce8d21f6b294d0aca297489ca"
+checksum = "cf8839c00077b45f07a06288148605e3a0b648387660f259bfcd3d6f19f810ca"
 dependencies = [
  "autd3-derive",
  "bit-vec",
@@ -127,9 +127,9 @@ dependencies = [
 
 [[package]]
 name = "autd3-derive"
-version = "29.0.0-rc.17"
+version = "29.0.0-rc.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e33d0cad4394eb41e3f1ee7bdd644ad601cfbbf384d92f2c03d6fd2f09562415"
+checksum = "cbe687b6d0e854e0a67e89e931d4a263cac184ef08f7300cc8d2d9ac3fdb8cd5"
 dependencies = [
  "quote",
  "syn",
@@ -137,9 +137,9 @@ dependencies = [
 
 [[package]]
 name = "autd3-driver"
-version = "29.0.0-rc.17"
+version = "29.0.0-rc.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a1cec572e2bb56a7b4e61cdd6a75967cd2f135d5142fe9f957ded1ef8ef425b4"
+checksum = "138c906b9f7c8e03d642c00471f50f9d74726ed5874e0ff2650ccb76d9b70283"
 dependencies = [
  "autd3-core",
  "autd3-derive",
@@ -160,9 +160,9 @@ dependencies = [
 
 [[package]]
 name = "autd3-firmware-emulator"
-version = "29.0.0-rc.17"
+version = "29.0.0-rc.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8868d0a7481a7bf620547f6a76b9527a9287d320eeaa04d08bb8c6601b198f79"
+checksum = "6d9b4c19aa63487025175f21f5dd77a40e859f2b551df42f19c50260453eab3f"
 dependencies = [
  "autd3-driver",
  "bitfield-struct",
@@ -173,9 +173,9 @@ dependencies = [
 
 [[package]]
 name = "autd3-link-soem"
-version = "29.0.0-rc.17.2"
+version = "29.0.0-rc.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ddf5050d584fa1c6624df410070ab322c53ba95bcc4334049b9926c22afd9a05"
+checksum = "cb53ff3f85870bd58013f3ccd37720ebc7e1c1f14ba243d3814b5be6083b0d04"
 dependencies = [
  "anyhow",
  "autd3-core",
@@ -199,9 +199,9 @@ dependencies = [
 
 [[package]]
 name = "autd3-protobuf"
-version = "29.0.0-rc.17"
+version = "29.0.0-rc.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1aaa737d747243938be974ce84a2907d4d30ff887fb36035ef6adcc1d9c9d29b"
+checksum = "0e5e532a6a6e7a039957623b4ac8e8ceeb2c4baa827b74a046b266dff47ac257"
 dependencies = [
  "autd3-core",
  "autd3-driver",
@@ -213,9 +213,9 @@ dependencies = [
 
 [[package]]
 name = "autd3capi-driver"
-version = "29.0.0-rc.17"
+version = "29.0.0-rc.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4ad693d6e020beed65f52218d5c2c80416b335e211d1f30648332c5e2d1e91f5"
+checksum = "0c7640b2c3ff054e17ba23fa6842c783168bb69011066823800f6a474e195c8e"
 dependencies = [
  "autd3",
  "autd3-core",
@@ -226,7 +226,7 @@ dependencies = [
 
 [[package]]
 name = "autd3capi-link-soem"
-version = "29.0.0-rc.17"
+version = "29.0.0-rc.18"
 dependencies = [
  "autd3-link-soem",
  "autd3capi-driver",
@@ -317,9 +317,9 @@ checksum = "5e764a1d40d510daf35e07be9eb06e75770908c27d411ee6c92109c9840eaaf7"
 
 [[package]]
 name = "bitfield-struct"
-version = "0.10.0"
+version = "0.10.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bedc5f4fa33bdc993f9b8ba7369d1b74fcdafa958924a0a54de6707e360de692"
+checksum = "2be5a46ba01b60005ae2c51a36a29cfe134bcacae2dd5cedcd4615fbaad1494b"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -612,9 +612,9 @@ dependencies = [
 
 [[package]]
 name = "httparse"
-version = "1.9.5"
+version = "1.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7d71d3574edd2771538b901e6549113b4006ece66150fb69c0fb6d9a2adae946"
+checksum = "f2d708df4e7140240a16cd6ab0ab65c972d7433ab77819ea693fde9c43811e2a"
 
 [[package]]
 name = "httpdate"
@@ -624,9 +624,9 @@ checksum = "df3b46402a9d5adb4c86a0cf463f42e19994e3ee891101b1841f30a545cb49a9"
 
 [[package]]
 name = "hyper"
-version = "1.5.2"
+version = "1.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "256fb8d4bd6413123cc9d91832d78325c48ff41677595be797d90f42969beae0"
+checksum = "cc2b571658e38e0c01b1fdca3bbbe93c00d3d71693ff2770043f8c29bc7d6f80"
 dependencies = [
  "bytes",
  "futures-channel",
@@ -1549,9 +1549,9 @@ checksum = "42ff0bf0c66b8238c6f3b578df37d0b7848e55df8577b3f74f92a69acceeb825"
 
 [[package]]
 name = "unicode-ident"
-version = "1.0.15"
+version = "1.0.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "11cd88e12b17c6494200a9c1b683a04fcac9573ed74cd1b62aeb2727c5592243"
+checksum = "a210d160f08b701c8721ba1c726c11662f877ea6b7094007e1ca9a1041945034"
 
 [[package]]
 name = "unicode-xid"
