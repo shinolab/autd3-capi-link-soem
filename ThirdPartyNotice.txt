@@ -42,39 +42,39 @@ atomic-waker 1.1.2 (Apache-2.0 OR MIT)
 https://github.com/smol-rs/atomic-waker
 ---------------------------------------------------------
 
-autd3 29.0.0-rc.19 (MIT)
+autd3 29.0.0-rc.20 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3-core 29.0.0-rc.19 (MIT)
+autd3-core 29.0.0-rc.20 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3-derive 29.0.0-rc.19 (MIT)
+autd3-derive 29.0.0-rc.20 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3-driver 29.0.0-rc.19 (MIT)
+autd3-driver 29.0.0-rc.20 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3-firmware-emulator 29.0.0-rc.19 (MIT)
+autd3-firmware-emulator 29.0.0-rc.20 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3-link-soem 29.0.0-rc.19 (MIT)
+autd3-link-soem 29.0.0-rc.20 (MIT)
 https://github.com/shinolab/autd3-link-soem
 ---------------------------------------------------------
 
-autd3-protobuf 29.0.0-rc.19 (MIT)
+autd3-protobuf 29.0.0-rc.20 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3capi-driver 29.0.0-rc.19 (MIT)
+autd3capi-driver 29.0.0-rc.20 (MIT)
 https://github.com/shinolab/autd3-capi
 ---------------------------------------------------------
 
-autd3capi-link-soem 29.0.0-rc.19 (MIT)
+autd3capi-link-soem 29.0.0-rc.20 (MIT)
 https://github.com/shinolab/autd3-capi-link-soem
 ---------------------------------------------------------
 
@@ -118,7 +118,7 @@ byteorder 1.5.0 (MIT OR Unlicense)
 https://github.com/BurntSushi/byteorder
 ---------------------------------------------------------
 
-bytes 1.9.0 (MIT)
+bytes 1.10.0 (MIT)
 https://github.com/tokio-rs/bytes
 ---------------------------------------------------------
 
@@ -150,11 +150,11 @@ derive-new 0.7.0 (MIT)
 https://github.com/nrc/derive-new
 ---------------------------------------------------------
 
-derive_more 1.0.0 (MIT)
+derive_more 2.0.1 (MIT)
 https://github.com/JelteF/derive_more
 ---------------------------------------------------------
 
-derive_more-impl 1.0.0 (MIT)
+derive_more-impl 2.0.1 (MIT)
 https://github.com/JelteF/derive_more
 ---------------------------------------------------------
 
@@ -354,7 +354,7 @@ object 0.36.7 (Apache-2.0 OR MIT)
 https://github.com/gimli-rs/object
 ---------------------------------------------------------
 
-once_cell 1.20.2 (Apache-2.0 OR MIT)
+once_cell 1.20.3 (Apache-2.0 OR MIT)
 https://github.com/matklad/once_cell
 ---------------------------------------------------------
 
@@ -370,11 +370,11 @@ percent-encoding 2.3.1 (Apache-2.0 OR MIT)
 https://github.com/servo/rust-url/
 ---------------------------------------------------------
 
-pin-project 1.1.8 (Apache-2.0 OR MIT)
+pin-project 1.1.9 (Apache-2.0 OR MIT)
 https://github.com/taiki-e/pin-project
 ---------------------------------------------------------
 
-pin-project-internal 1.1.8 (Apache-2.0 OR MIT)
+pin-project-internal 1.1.9 (Apache-2.0 OR MIT)
 https://github.com/taiki-e/pin-project
 ---------------------------------------------------------
 
@@ -750,7 +750,7 @@ zerocopy 0.7.35 (Apache-2.0 OR BSD-2-Clause OR MIT)
 https://github.com/google/zerocopy
 ---------------------------------------------------------
 
-zerocopy 0.8.14 (Apache-2.0 OR BSD-2-Clause OR MIT)
+zerocopy 0.8.17 (Apache-2.0 OR BSD-2-Clause OR MIT)
 https://github.com/google/zerocopy
 ---------------------------------------------------------
 
@@ -758,7 +758,7 @@ zerocopy-derive 0.7.35 (Apache-2.0 OR BSD-2-Clause OR MIT)
 https://github.com/google/zerocopy
 ---------------------------------------------------------
 
-zerocopy-derive 0.8.14 (Apache-2.0 OR BSD-2-Clause OR MIT)
+zerocopy-derive 0.8.17 (Apache-2.0 OR BSD-2-Clause OR MIT)
 https://github.com/google/zerocopy
 ---------------------------------------------------------
 
