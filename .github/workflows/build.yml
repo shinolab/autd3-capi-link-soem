@@ -45,7 +45,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-build
-      - run: cargo make check --features "${{ matrix.features }}"
+      - run: cargo make ci --features "${{ matrix.features }}"
         shell: bash
 
   all-tests-passed:

@@ -1,22 +1,22 @@
 use std::{
-    ffi::{c_char, CStr, CString},
+    ffi::{CStr, CString, c_char},
     num::NonZeroUsize,
 };
 
 use autd3capi_driver::*;
 
-use autd3_link_soem::{local::ProcessPriority, local::*, SyncMode, ThreadPriority, TimerStrategy};
+use autd3_link_soem::{SyncMode, ThreadPriority, TimerStrategy, local::ProcessPriority, local::*};
 
 use crate::thread_priority::ThreadPriorityPtr;
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 pub unsafe extern "C" fn AUTDLinkSOEMTracingInit() {
     tracing_subscriber::fmt()
         .with_env_filter(tracing_subscriber::EnvFilter::from_default_env())
         .init();
 }
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 pub unsafe extern "C" fn AUTDLinkSOEMTracingInitWithFile(path: *const c_char) -> ResultStatus {
     let path = validate_cstr!(path, AUTDStatus, ResultStatus);
     std::fs::File::options()
@@ -77,31 +77,33 @@ impl TryFrom<SOEMOption> for autd3_link_soem::SOEMOption {
     }
 }
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 #[must_use]
 pub unsafe extern "C" fn AUTDLinkSOEM(
     err_handler: ConstPtr,
     err_context: ConstPtr,
     option: SOEMOption,
 ) -> ResultLink {
-    let out_func = move |slave: usize, status: Status| {
-        let (out_f, context) = {
-            (
-                std::mem::transmute::<ConstPtr, unsafe extern "C" fn(ConstPtr, u32, Status)>(
-                    err_handler,
-                ),
-                err_context,
-            )
+    unsafe {
+        let out_func = move |slave: usize, status: Status| {
+            let (out_f, context) = {
+                (
+                    std::mem::transmute::<ConstPtr, unsafe extern "C" fn(ConstPtr, u32, Status)>(
+                        err_handler,
+                    ),
+                    err_context,
+                )
+            };
+            out_f(context, slave as _, status);
         };
-        out_f(context, slave as _, status);
-    };
-    option
-        .try_into()
-        .map(|option| SOEM::new(out_func, option))
-        .into()
+        option
+            .try_into()
+            .map(|option| SOEM::new(out_func, option))
+            .into()
+    }
 }
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 #[must_use]
 #[allow(unused_variables)]
 pub unsafe extern "C" fn AUTDLinkSOEMIsDefault(option: SOEMOption) -> bool {
@@ -112,15 +114,17 @@ pub unsafe extern "C" fn AUTDLinkSOEMIsDefault(option: SOEMOption) -> bool {
         })
 }
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 #[must_use]
 pub unsafe extern "C" fn AUTDLinkSOEMStatusGetMsg(src: Status, dst: *mut c_char) -> u32 {
-    let msg = format!("{}", src);
-    if dst.is_null() {
-        return msg.len() as u32 + 1;
+    unsafe {
+        let msg = format!("{}", src);
+        if dst.is_null() {
+            return msg.len() as u32 + 1;
+        }
+        let c_string = CString::new(msg).unwrap();
+        let c_str: &CStr = c_string.as_c_str();
+        libc::strcpy(dst, c_str.as_ptr());
+        0
     }
-    let c_string = CString::new(msg).unwrap();
-    let c_str: &CStr = c_string.as_c_str();
-    libc::strcpy(dst, c_str.as_ptr());
-    0
 }

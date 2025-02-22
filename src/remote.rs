@@ -4,7 +4,7 @@ use autd3capi_driver::*;
 
 use autd3_link_soem::remote::*;
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 #[must_use]
 pub unsafe extern "C" fn AUTDLinkRemoteSOEM(addr: *const c_char) -> ResultLink {
     let addr = if addr.is_null() {

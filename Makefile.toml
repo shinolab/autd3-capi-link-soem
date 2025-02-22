@@ -11,6 +11,9 @@ command = "cargo"
 args = ["clean"]
 
 [tasks.check]
+dependencies = ["format", "build", "lint", "license"]
+
+[tasks.ci]
 dependencies = ["format", "build", "lint"]
 
 [tasks.build]
