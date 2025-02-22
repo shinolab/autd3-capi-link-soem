@@ -13,13 +13,13 @@ impl From<ThreadPriority> for ThreadPriorityPtr {
     }
 }
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 #[must_use]
 pub unsafe extern "C" fn AUTDLinkSOEMThreadPriorityMin() -> ThreadPriorityPtr {
     ThreadPriorityPtr::from(ThreadPriority::Min)
 }
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 #[must_use]
 pub unsafe extern "C" fn AUTDLinkSOEMThreadPriorityCrossplatform(value: u8) -> ThreadPriorityPtr {
     ThreadPriorityPtr::from(ThreadPriority::Crossplatform(
@@ -30,7 +30,7 @@ pub unsafe extern "C" fn AUTDLinkSOEMThreadPriorityCrossplatform(value: u8) -> T
     ))
 }
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 #[must_use]
 pub unsafe extern "C" fn AUTDLinkSOEMThreadPriorityMax() -> ThreadPriorityPtr {
     ThreadPriorityPtr::from(ThreadPriority::Max)

@@ -77,9 +77,9 @@ dependencies = [
 
 [[package]]
 name = "anyhow"
-version = "1.0.89"
+version = "1.0.96"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "86fdf8605db99b54d3cd748a44c6d04df638eb5dafb219b135d0149bd0db01f6"
+checksum = "6b964d184e89d9b6b67dd2715bc8e74cf3107fb2b529990c90cf517326150bf4"
 
 [[package]]
 name = "atomic-waker"
@@ -89,7 +89,7 @@ checksum = "1505bd5d3d116872e7271a6d4e16d81d0c8570876c8de68093a09ac269d8aac0"
 
 [[package]]
 name = "autd3-license-check"
-version = "0.4.0"
+version = "30.0.0"
 dependencies = [
  "anyhow",
  "cargo-license",
@@ -699,8 +699,6 @@ version = "21.0.0-alpha.3"
 dependencies = [
  "anyhow",
  "autd3-license-check",
- "cargo-license",
- "cargo_metadata",
 ]
 
 [[package]]
