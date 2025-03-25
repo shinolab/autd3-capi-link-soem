@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: changed-files-yaml
-        uses: tj-actions/changed-files@v44
+        uses: tj-actions/changed-files@v46
         with:
           files_yaml: |
             src:
@@ -40,8 +40,6 @@ jobs:
           - os: macos-latest
           - os: ubuntu-latest
             features: "unity"
-          - os: ubuntu-latest
-            features: "unity dynamic_freq"
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-build

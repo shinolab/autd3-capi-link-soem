@@ -70,12 +70,6 @@ jobs:
         if: ${{ matrix.os == 'windows-latest' }}
       - run: tar -zcvf assets-unity.tar.gz bin LICENSE ThirdPartyNotice.txt
         if: ${{ matrix.os != 'windows-latest'}}
-
-      - run: cargo make publish --features "unity dynamic_freq"
-      - run: Compress-Archive -Path LICENSE, bin, ThirdPartyNotice.txt -DestinationPath assets-unity-dynamic_freq.zip
-        if: ${{ matrix.os == 'windows-latest' }}
-      - run: tar -zcvf assets-unity-dynamic_freq.tar.gz bin LICENSE ThirdPartyNotice.txt
-        if: ${{ matrix.os != 'windows-latest'}}
         
       - run: cargo make publish
       - run: |
@@ -114,11 +108,4 @@ jobs:
           upload_url: ${{ steps.get_release_info.outputs.content }}
           asset_path: ./assets-unity.${{ matrix.os == 'windows-latest' && 'zip' || 'tar.gz' }}
           asset_name: ${{ steps.get_version.outputs.result }}-unity.${{ matrix.os == 'windows-latest' && 'zip' || 'tar.gz' }}
-          asset_content_type: ${{ matrix.os == 'windows-latest' && 'application/zip' || 'application/octet-stream' }}
-      - uses: shogo82148/actions-upload-release-asset@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          upload_url: ${{ steps.get_release_info.outputs.content }}
-          asset_path: ./assets-unity-dynamic_freq.${{ matrix.os == 'windows-latest' && 'zip' || 'tar.gz' }}
-          asset_name: ${{ steps.get_version.outputs.result }}-unity-dynamic_freq.${{ matrix.os == 'windows-latest' && 'zip' || 'tar.gz' }}
           asset_content_type: ${{ matrix.os == 'windows-latest' && 'application/zip' || 'application/octet-stream' }}
