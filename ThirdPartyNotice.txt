@@ -34,43 +34,43 @@ atomic-waker 1.1.2 (Apache-2.0 OR MIT)
 https://github.com/smol-rs/atomic-waker
 ---------------------------------------------------------
 
-autd3 32.1.1 (MIT)
+autd3 33.0.0 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3-core 32.1.1 (MIT)
+autd3-core 33.0.0 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3-derive 32.1.1 (MIT)
+autd3-derive 33.0.0 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3-driver 32.1.1 (MIT)
+autd3-driver 33.0.0 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3-firmware-emulator 32.1.1 (MIT)
+autd3-firmware-emulator 33.0.0 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3-link-soem 32.1.1 (MIT)
+autd3-link-soem 33.0.0 (MIT)
 https://github.com/shinolab/autd3-link-soem
 ---------------------------------------------------------
 
-autd3-protobuf 32.1.1 (MIT)
+autd3-protobuf 33.0.0 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3capi-driver 32.1.1 (MIT)
+autd3capi-driver 33.0.0 (MIT)
 https://github.com/shinolab/autd3-capi
 ---------------------------------------------------------
 
-autd3capi-link-soem 32.1.1 (MIT)
+autd3capi-link-soem 33.0.0 (MIT)
 https://github.com/shinolab/autd3-capi-link-soem
 ---------------------------------------------------------
 
-backtrace 0.3.74 (Apache-2.0 OR MIT)
+backtrace 0.3.75 (Apache-2.0 OR MIT)
 https://github.com/rust-lang/backtrace-rs
 ---------------------------------------------------------
 
@@ -82,11 +82,11 @@ bit-vec 0.8.0 (Apache-2.0 OR MIT)
 https://github.com/contain-rs/bit-vec
 ---------------------------------------------------------
 
-bitfield-struct 0.10.1 (MIT)
+bitfield-struct 0.11.0 (MIT)
 https://github.com/wrenger/bitfield-struct-rs.git
 ---------------------------------------------------------
 
-bitflags 2.9.0 (Apache-2.0 OR MIT)
+bitflags 2.9.1 (Apache-2.0 OR MIT)
 https://github.com/bitflags/bitflags
 ---------------------------------------------------------
 
@@ -94,7 +94,7 @@ bvh 0.11.0 (MIT)
 https://github.com/svenstaro/bvh
 ---------------------------------------------------------
 
-bytemuck 1.22.0 (Apache-2.0 OR MIT OR Zlib)
+bytemuck 1.23.0 (Apache-2.0 OR MIT OR Zlib)
 https://github.com/Lokathor/bytemuck
 ---------------------------------------------------------
 
@@ -166,7 +166,7 @@ futures-util 0.3.31 (Apache-2.0 OR MIT)
 https://github.com/rust-lang/futures-rs
 ---------------------------------------------------------
 
-getrandom 0.3.2 (Apache-2.0 OR MIT)
+getrandom 0.3.3 (Apache-2.0 OR MIT)
 https://github.com/rust-random/getrandom
 ---------------------------------------------------------
 
@@ -178,11 +178,11 @@ gimli 0.31.1 (Apache-2.0 OR MIT)
 https://github.com/gimli-rs/gimli
 ---------------------------------------------------------
 
-h2 0.4.9 (MIT)
+h2 0.4.10 (MIT)
 https://github.com/hyperium/h2
 ---------------------------------------------------------
 
-hashbrown 0.15.2 (Apache-2.0 OR MIT)
+hashbrown 0.15.3 (Apache-2.0 OR MIT)
 https://github.com/rust-lang/hashbrown
 ---------------------------------------------------------
 
@@ -214,7 +214,7 @@ hyper-timeout 0.5.2 (Apache-2.0 OR MIT)
 https://github.com/hjr3/hyper-timeout
 ---------------------------------------------------------
 
-hyper-util 0.1.11 (MIT)
+hyper-util 0.1.12 (MIT)
 https://github.com/hyperium/hyper-util
 ---------------------------------------------------------
 
@@ -246,7 +246,7 @@ matchers 0.1.0 (MIT)
 https://github.com/hawkw/matchers
 ---------------------------------------------------------
 
-matrixmultiply 0.3.9 (Apache-2.0 OR MIT)
+matrixmultiply 0.3.10 (Apache-2.0 OR MIT)
 https://github.com/bluss/matrixmultiply/
 ---------------------------------------------------------
 
@@ -258,7 +258,7 @@ miniz_oxide 0.8.8 (Apache-2.0 OR MIT OR Zlib)
 https://github.com/Frommi/miniz_oxide/tree/master/miniz_oxide
 ---------------------------------------------------------
 
-mio 1.0.3 (MIT)
+mio 1.0.4 (MIT)
 https://github.com/tokio-rs/mio
 ---------------------------------------------------------
 
@@ -268,6 +268,10 @@ https://github.com/dimforge/nalgebra
 
 nalgebra-macros 0.2.2 (Apache-2.0)
 https://github.com/dimforge/nalgebra
+---------------------------------------------------------
+
+nom 8.0.0 (MIT)
+https://github.com/rust-bakery/nom
 ---------------------------------------------------------
 
 nu-ansi-term 0.46.0 (MIT)
@@ -426,7 +430,7 @@ rustc-demangle 0.1.24 (Apache-2.0 OR MIT)
 https://github.com/rust-lang/rustc-demangle
 ---------------------------------------------------------
 
-rustversion 1.0.20 (Apache-2.0 OR MIT)
+rustversion 1.0.21 (Apache-2.0 OR MIT)
 https://github.com/dtolnay/rustversion
 ---------------------------------------------------------
 
@@ -470,7 +474,7 @@ spin_sleep 1.3.1 (Apache-2.0)
 https://github.com/alexheretic/spin-sleep
 ---------------------------------------------------------
 
-syn 2.0.100 (Apache-2.0 OR MIT)
+syn 2.0.101 (Apache-2.0 OR MIT)
 https://github.com/dtolnay/syn
 ---------------------------------------------------------
 
@@ -510,7 +514,7 @@ time-macros 0.2.22 (Apache-2.0 OR MIT)
 https://github.com/time-rs/time
 ---------------------------------------------------------
 
-tokio 1.44.2 (MIT)
+tokio 1.45.1 (MIT)
 https://github.com/tokio-rs/tokio
 ---------------------------------------------------------
 
@@ -522,11 +526,11 @@ tokio-stream 0.1.17 (MIT)
 https://github.com/tokio-rs/tokio
 ---------------------------------------------------------
 
-tokio-util 0.7.14 (MIT)
+tokio-util 0.7.15 (MIT)
 https://github.com/tokio-rs/tokio
 ---------------------------------------------------------
 
-tonic 0.13.0 (MIT)
+tonic 0.13.1 (MIT)
 https://github.com/hyperium/tonic
 ---------------------------------------------------------
 
@@ -560,6 +564,10 @@ https://github.com/tokio-rs/tracing
 
 try-lock 0.2.5 (MIT)
 https://github.com/seanmonstar/try-lock
+---------------------------------------------------------
+
+tynm 0.2.0 (Apache-2.0 OR MIT)
+https://github.com/azriel91/tynm
 ---------------------------------------------------------
 
 typenum 1.18.0 (Apache-2.0 OR MIT)
@@ -610,11 +618,11 @@ windows-collections 0.2.0 (Apache-2.0 OR MIT)
 https://github.com/microsoft/windows-rs
 ---------------------------------------------------------
 
-windows-core 0.61.0 (Apache-2.0 OR MIT)
+windows-core 0.61.2 (Apache-2.0 OR MIT)
 https://github.com/microsoft/windows-rs
 ---------------------------------------------------------
 
-windows-future 0.2.0 (Apache-2.0 OR MIT)
+windows-future 0.2.1 (Apache-2.0 OR MIT)
 https://github.com/microsoft/windows-rs
 ---------------------------------------------------------
 
@@ -634,11 +642,11 @@ windows-numerics 0.2.0 (Apache-2.0 OR MIT)
 https://github.com/microsoft/windows-rs
 ---------------------------------------------------------
 
-windows-result 0.3.2 (Apache-2.0 OR MIT)
+windows-result 0.3.4 (Apache-2.0 OR MIT)
 https://github.com/microsoft/windows-rs
 ---------------------------------------------------------
 
-windows-strings 0.4.0 (Apache-2.0 OR MIT)
+windows-strings 0.4.2 (Apache-2.0 OR MIT)
 https://github.com/microsoft/windows-rs
 ---------------------------------------------------------
 
@@ -651,6 +659,10 @@ https://github.com/microsoft/windows-rs
 ---------------------------------------------------------
 
 windows-targets 0.52.6 (Apache-2.0 OR MIT)
+https://github.com/microsoft/windows-rs
+---------------------------------------------------------
+
+windows-threading 0.1.0 (Apache-2.0 OR MIT)
 https://github.com/microsoft/windows-rs
 ---------------------------------------------------------
 
@@ -690,11 +702,11 @@ wit-bindgen-rt 0.39.0 (Apache-2.0 OR Apache-2.0 WITH LLVM-exception OR MIT)
 https://github.com/bytecodealliance/wit-bindgen
 ---------------------------------------------------------
 
-zerocopy 0.8.24 (Apache-2.0 OR BSD-2-Clause OR MIT)
+zerocopy 0.8.25 (Apache-2.0 OR BSD-2-Clause OR MIT)
 https://github.com/google/zerocopy
 ---------------------------------------------------------
 
-zerocopy-derive 0.8.24 (Apache-2.0 OR BSD-2-Clause OR MIT)
+zerocopy-derive 0.8.25 (Apache-2.0 OR BSD-2-Clause OR MIT)
 https://github.com/google/zerocopy
 ---------------------------------------------------------
 
