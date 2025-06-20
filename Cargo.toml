@@ -1,20 +1,20 @@
 [package]
 name = "autd3capi-link-soem"
-version = "33.0.0"
+version = "34.0.0-rc.1"
 authors = ["shun suzuki <suzuki@hapis.k.u-tokyo.ac.jp>"]
 edition = "2024"
 license = "MIT"
 repository = "https://github.com/shinolab/autd3-capi-link-soem"
 
 [lib]
-crate-type = ["cdylib", "staticlib"]
+crate-type = ["cdylib"]
 
 [features]
 unity = ["autd3capi-driver/unity"]
 
 [dependencies]
-autd3capi-driver = { version = "33.0.0" }
-autd3-link-soem = { version = "33.0.0", features = ["remote", "blocking"] }
-thread-priority = "=1.2.0"
+autd3capi-driver = { version = "=34.0.0-rc.1" }
+autd3-link-soem = { version = "=34.0.0-rc.1", features = ["remote", "blocking"] }
+thread-priority = "=2.1.0"
 tracing-subscriber = { version = "=0.3.19", features = ["ansi", "env-filter"], default-features = false }
 tracing = { version = "=0.1.41", default-features = false }

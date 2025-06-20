@@ -48,14 +48,12 @@ script = '''
 rm -rf bin
 mkdir -p bin
 cp target/debug/*.dll bin || true
-cp target/debug/*.dylib bin ||| true
-cp target/debug/*.so bin ||| true
+cp target/debug/*.dylib bin || true
+cp target/debug/*.so bin || true
 rm -rf lib
 mkdir -p lib
-cp target/debug/*.lib lib || true
+cp target/debug/*.dll.lib lib || true
 cp target/debug/*.pdb lib || true
-rm lib/*.dll.lib || true
-cp target/debug/*.a lib || true
 '''
 
 [tasks.gather-artifacts-release]
@@ -69,9 +67,7 @@ cp target/release/*.dylib bin || true
 cp target/release/*.so bin || true
 rm -rf lib
 mkdir -p lib
-cp target/release/*.lib lib || true
-rm lib/*.dll.lib || true
-cp target/release/*.a lib || true
+cp target/release/*.dll.lib lib || true
 '''
 
 [tasks.update]

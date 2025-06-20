@@ -73,12 +73,10 @@ jobs:
         
       - run: cargo make publish
       - run: |
-          Compress-Archive -Path LICENSE, lib, ThirdPartyNotice.txt -DestinationPath assets-static.zip
-          Compress-Archive -Path LICENSE, bin, ThirdPartyNotice.txt -DestinationPath assets-shared.zip
+          Compress-Archive -Path LICENSE, bin, lib, ThirdPartyNotice.txt -DestinationPath assets.zip
         if: ${{ matrix.os == 'windows-latest' }}
       - run: |
-          tar -zcvf assets-static.tar.gz lib LICENSE ThirdPartyNotice.txt
-          tar -zcvf assets-shared.tar.gz bin LICENSE ThirdPartyNotice.txt
+          tar -zcvf assets.tar.gz bin LICENSE ThirdPartyNotice.txt
         if: ${{ matrix.os != 'windows-latest'}}
 
       - uses: actions/download-artifact@v4
@@ -92,15 +90,8 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           upload_url: ${{ steps.get_release_info.outputs.content }}
-          asset_path: ./assets-shared.${{ matrix.os == 'windows-latest' && 'zip' || 'tar.gz' }}
-          asset_name: ${{ steps.get_version.outputs.result }}-shared.${{ matrix.os == 'windows-latest' && 'zip' || 'tar.gz' }}
-          asset_content_type: ${{ matrix.os == 'windows-latest' && 'application/zip' || 'application/octet-stream' }}
-      - uses: shogo82148/actions-upload-release-asset@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          upload_url: ${{ steps.get_release_info.outputs.content }}
-          asset_path: ./assets-static.${{ matrix.os == 'windows-latest' && 'zip' || 'tar.gz' }}
-          asset_name: ${{ steps.get_version.outputs.result }}-static.${{ matrix.os == 'windows-latest' && 'zip' || 'tar.gz' }}
+          asset_path: ./assets.${{ matrix.os == 'windows-latest' && 'zip' || 'tar.gz' }}
+          asset_name: ${{ steps.get_version.outputs.result }}.${{ matrix.os == 'windows-latest' && 'zip' || 'tar.gz' }}
           asset_content_type: ${{ matrix.os == 'windows-latest' && 'application/zip' || 'application/octet-stream' }}
       - uses: shogo82148/actions-upload-release-asset@v1
         with:
