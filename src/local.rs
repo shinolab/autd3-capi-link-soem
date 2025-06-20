@@ -3,9 +3,12 @@ use std::{
     num::NonZeroUsize,
 };
 
-use autd3capi_driver::*;
+use autd3capi_driver::{
+    core::sleep::{SpinSleeper, SpinWaitSleeper, StdSleeper},
+    *,
+};
 
-use autd3_link_soem::{SyncMode, ThreadPriority, TimerStrategy, local::ProcessPriority, local::*};
+use autd3_link_soem::{ThreadPriority, local::ProcessPriority, local::*};
 
 use crate::thread_priority::ThreadPriorityPtr;
 
@@ -40,11 +43,9 @@ pub struct SOEMOption {
     pub buf_size: u32,
     pub send_cycle: Duration,
     pub sync0_cycle: Duration,
-    pub sync_mode: SyncMode,
     pub process_priority: ProcessPriority,
     pub thread_priority: ThreadPriorityPtr,
     pub state_check_interval: Duration,
-    pub timer_strategy: TimerStrategy,
     pub sync_tolerance: Duration,
     pub sync_timeout: Duration,
 }
@@ -64,12 +65,10 @@ impl TryFrom<SOEMOption> for autd3_link_soem::SOEMOption {
                 buf_size: NonZeroUsize::new_unchecked(value.buf_size as _),
                 send_cycle: value.send_cycle.into(),
                 sync0_cycle: value.sync0_cycle.into(),
-                sync_mode: value.sync_mode,
                 #[cfg(target_os = "windows")]
                 process_priority: value.process_priority,
                 thread_priority: *take!(value.thread_priority, ThreadPriority),
                 state_check_interval: value.state_check_interval.into(),
-                timer_strategy: value.timer_strategy,
                 sync_tolerance: value.sync_tolerance.into(),
                 sync_timeout: value.sync_timeout.into(),
             })
@@ -83,6 +82,7 @@ pub unsafe extern "C" fn AUTDLinkSOEM(
     err_handler: ConstPtr,
     err_context: ConstPtr,
     option: SOEMOption,
+    sleeper: SleeperWrap,
 ) -> ResultLink {
     unsafe {
         let out_func = move |slave: usize, status: Status| {
@@ -96,10 +96,27 @@ pub unsafe extern "C" fn AUTDLinkSOEM(
             };
             out_f(context, slave as _, status);
         };
-        option
-            .try_into()
-            .map(|option| SOEM::new(out_func, option))
-            .into()
+        match sleeper.tag {
+            SleeperTag::Std => option
+                .try_into()
+                .map(|option| SOEM::new_with_sleeper(out_func, option, StdSleeper))
+                .into(),
+            SleeperTag::Spin => option
+                .try_into()
+                .map(|option| {
+                    SOEM::new_with_sleeper(
+                        out_func,
+                        option,
+                        SpinSleeper::new(sleeper.value)
+                            .with_spin_strategy(sleeper.spin_strategy.into()),
+                    )
+                })
+                .into(),
+            SleeperTag::SpinWait => option
+                .try_into()
+                .map(|option| SOEM::new_with_sleeper(out_func, option, SpinWaitSleeper))
+                .into(),
+        }
     }
 }
 
