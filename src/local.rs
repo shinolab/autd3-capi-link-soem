@@ -99,12 +99,12 @@ pub unsafe extern "C" fn AUTDLinkSOEM(
         match sleeper.tag {
             SleeperTag::Std => option
                 .try_into()
-                .map(|option| SOEM::new_with_sleeper(out_func, option, StdSleeper))
+                .map(|option| SOEM::with_sleeper(out_func, option, StdSleeper))
                 .into(),
             SleeperTag::Spin => option
                 .try_into()
                 .map(|option| {
-                    SOEM::new_with_sleeper(
+                    SOEM::with_sleeper(
                         out_func,
                         option,
                         SpinSleeper::new(sleeper.value)
@@ -114,7 +114,7 @@ pub unsafe extern "C" fn AUTDLinkSOEM(
                 .into(),
             SleeperTag::SpinWait => option
                 .try_into()
-                .map(|option| SOEM::new_with_sleeper(out_func, option, SpinWaitSleeper))
+                .map(|option| SOEM::with_sleeper(out_func, option, SpinWaitSleeper))
                 .into(),
         }
     }
