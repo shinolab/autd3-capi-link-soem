@@ -18,3 +18,8 @@ autd3-link-soem = { version = "34.0.0", features = ["remote", "blocking"] }
 thread-priority = "=2.1.0"
 tracing-subscriber = { version = "=0.3.19", features = ["ansi", "env-filter"], default-features = false }
 tracing = { version = "=0.1.41", default-features = false }
+
+[profile.release]
+strip = true
+lto = false
+rpath = true
