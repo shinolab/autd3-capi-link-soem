@@ -34,7 +34,7 @@ atomic-waker 1.1.2 (Apache-2.0 OR MIT)
 https://github.com/smol-rs/atomic-waker
 ---------------------------------------------------------
 
-autd3 34.0.0 (MIT)
+autd3 35.0.0 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
@@ -50,6 +50,10 @@ autd3-core 34.0.0 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
+autd3-core 35.0.0 (MIT)
+https://github.com/shinolab/autd3-rs
+---------------------------------------------------------
+
 autd3-derive 31.0.1 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
@@ -59,6 +63,10 @@ https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
 autd3-derive 34.0.0 (MIT)
+https://github.com/shinolab/autd3-rs
+---------------------------------------------------------
+
+autd3-derive 35.0.0 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
@@ -74,6 +82,10 @@ autd3-driver 34.0.0 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
+autd3-driver 35.0.0 (MIT)
+https://github.com/shinolab/autd3-rs
+---------------------------------------------------------
+
 autd3-firmware-emulator 31.0.1 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
@@ -86,19 +98,23 @@ autd3-firmware-emulator 34.0.0 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3-link-soem 34.0.0 (MIT)
-https://github.com/shinolab/autd3-link-soem
----------------------------------------------------------
-
-autd3-protobuf 34.0.0 (MIT)
+autd3-firmware-emulator 35.0.0 (MIT)
 https://github.com/shinolab/autd3-rs
 ---------------------------------------------------------
 
-autd3capi-driver 34.0.0 (MIT)
+autd3-link-soem 35.0.0 (MIT)
+https://github.com/shinolab/autd3-link-soem
+---------------------------------------------------------
+
+autd3-protobuf 35.0.0 (MIT)
+https://github.com/shinolab/autd3-rs
+---------------------------------------------------------
+
+autd3capi-driver 35.0.0 (MIT)
 https://github.com/shinolab/autd3-capi
 ---------------------------------------------------------
 
-autd3capi-link-soem 34.0.0 (MIT)
+autd3capi-link-soem 35.0.0 (MIT)
 https://github.com/shinolab/autd3-capi-link-soem
 ---------------------------------------------------------
 
@@ -144,6 +160,10 @@ https://github.com/rust-lang/cfg-if
 
 const_fn 0.4.11 (Apache-2.0 OR MIT)
 https://github.com/taiki-e/const_fn
+---------------------------------------------------------
+
+core_affinity 0.8.3 (Apache-2.0 OR MIT)
+https://github.com/Elzair/core_affinity_rs
 ---------------------------------------------------------
 
 crossbeam-channel 0.5.15 (Apache-2.0 OR MIT)
@@ -262,7 +282,7 @@ hyper-util 0.1.14 (MIT)
 https://github.com/hyperium/hyper-util
 ---------------------------------------------------------
 
-indexmap 2.9.0 (Apache-2.0 OR MIT)
+indexmap 2.10.0 (Apache-2.0 OR MIT)
 https://github.com/indexmap-rs/indexmap
 ---------------------------------------------------------
 
