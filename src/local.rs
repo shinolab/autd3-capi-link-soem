@@ -75,7 +75,7 @@ impl TryFrom<SOEMOption> for autd3_link_soem::SOEMOption {
                 affinity: if value.affinity < 0 {
                     None
                 } else {
-                    Some(core_affinity::CoreId {
+                    Some(CoreId {
                         id: value.affinity as _,
                     })
                 },

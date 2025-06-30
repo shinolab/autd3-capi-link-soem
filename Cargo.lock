@@ -60,16 +60,16 @@ checksum = "1505bd5d3d116872e7271a6d4e16d81d0c8570876c8de68093a09ac269d8aac0"
 
 [[package]]
 name = "autd3"
-version = "35.0.0"
+version = "35.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6f670bfa7ea81d3e1f773bfb155736c29cdf7d35a8d7bed891218bae6f1cef7c"
+checksum = "96816918fa37b627359ffcee736df2f25199996eb0b4ff5aa68e176957861959"
 dependencies = [
- "autd3-core 35.0.0",
- "autd3-driver 35.0.0",
+ "autd3-core 35.0.1",
+ "autd3-driver 35.0.1",
  "autd3-firmware-emulator 31.0.1",
  "autd3-firmware-emulator 33.0.0",
  "autd3-firmware-emulator 34.0.0",
- "autd3-firmware-emulator 35.0.0",
+ "autd3-firmware-emulator 35.0.1",
  "bit-vec",
  "derive_more",
  "getset",
@@ -146,11 +146,11 @@ dependencies = [
 
 [[package]]
 name = "autd3-core"
-version = "35.0.0"
+version = "35.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "278bdf1ea4ee92d436f0d42aab5bf7c3365ea9754102432eedc17db340067d63"
+checksum = "3e5338d842e0b13d14140d422613c8d11ed2fe60b87ac3e37d50f45f7da5c0b7"
 dependencies = [
- "autd3-derive 35.0.0",
+ "autd3-derive 35.0.1",
  "bit-vec",
  "bitfield-struct 0.11.0",
  "bvh",
@@ -201,9 +201,9 @@ dependencies = [
 
 [[package]]
 name = "autd3-derive"
-version = "35.0.0"
+version = "35.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "58dbbbc29ec0f3dac82da6f0fbe9a6b9f793c612bcb1a5d8f079421982caaedd"
+checksum = "85e2a7fffecd8c1d7a2690df1d110108065e251d561863a2c236c275c1b7179e"
 dependencies = [
  "quote",
  "syn",
@@ -281,12 +281,12 @@ dependencies = [
 
 [[package]]
 name = "autd3-driver"
-version = "35.0.0"
+version = "35.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ca9d2d720198c6fad1b793f4a30c848b5ebabfcbc6d9f864aa1f7d22fa9c4dad"
+checksum = "17af752cda9690d7f0d2367d59603461d6c33246b2612a704015c736d8bf47b2"
 dependencies = [
- "autd3-core 35.0.0",
- "autd3-derive 35.0.0",
+ "autd3-core 35.0.1",
+ "autd3-derive 35.0.1",
  "bitfield-struct 0.11.0",
  "bitflags",
  "derive_more",
@@ -346,12 +346,12 @@ dependencies = [
 
 [[package]]
 name = "autd3-firmware-emulator"
-version = "35.0.0"
+version = "35.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c3c67e451aab376ebfcf5b6ac6cece95b6266f8ec7f2bba8fa8f358f639e8bb0"
+checksum = "37257103a921b777e4a78a5ece83d690b4d13a91e3822ddf09109438264b7596"
 dependencies = [
- "autd3-core 35.0.0",
- "autd3-driver 35.0.0",
+ "autd3-core 35.0.1",
+ "autd3-driver 35.0.1",
  "bitfield-struct 0.11.0",
  "getset",
  "time",
@@ -360,12 +360,12 @@ dependencies = [
 
 [[package]]
 name = "autd3-link-soem"
-version = "35.0.0"
+version = "35.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "be3c5328da77b9e75566a058f9698ff538c0e1f8d0b2c65577c0f7498822b68a"
+checksum = "c130741453264ab4ddaf9fe850df9b5ab218db73de4782520d9cd8906056f54c"
 dependencies = [
  "anyhow",
- "autd3-core 35.0.0",
+ "autd3-core 35.0.1",
  "autd3-protobuf",
  "cc",
  "core_affinity",
@@ -387,12 +387,12 @@ dependencies = [
 
 [[package]]
 name = "autd3-protobuf"
-version = "35.0.0"
+version = "35.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cbad1e96c8d10e5b3681c0126247a78f2ed5d674cf3f026b754a0acf4d5e04af"
+checksum = "c412013958090e76eea7682deabd9f02547b7de9fd2de093dcf7b47553ab04b0"
 dependencies = [
- "autd3-core 35.0.0",
- "autd3-driver 35.0.0",
+ "autd3-core 35.0.1",
+ "autd3-driver 35.0.1",
  "prost",
  "thiserror",
  "tonic",
@@ -401,9 +401,9 @@ dependencies = [
 
 [[package]]
 name = "autd3capi-driver"
-version = "35.0.0"
+version = "35.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ee821f6159d16a4280362927a17f1f3ce2112c8782442f8c065af141dbf58d2e"
+checksum = "09c0252627d3c3a336317b9b17fd0e9e00bf29101d311d798faa7b978a17cc59"
 dependencies = [
  "autd3",
  "libc",
@@ -411,11 +411,10 @@ dependencies = [
 
 [[package]]
 name = "autd3capi-link-soem"
-version = "35.0.0"
+version = "35.0.1"
 dependencies = [
  "autd3-link-soem",
  "autd3capi-driver",
- "core_affinity",
  "thread-priority",
  "tracing",
  "tracing-subscriber",
