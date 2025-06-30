@@ -48,6 +48,7 @@ pub struct SOEMOption {
     pub state_check_interval: Duration,
     pub sync_tolerance: Duration,
     pub sync_timeout: Duration,
+    pub affinity: i32,
 }
 
 impl TryFrom<SOEMOption> for autd3_link_soem::SOEMOption {
@@ -71,6 +72,13 @@ impl TryFrom<SOEMOption> for autd3_link_soem::SOEMOption {
                 state_check_interval: value.state_check_interval.into(),
                 sync_tolerance: value.sync_tolerance.into(),
                 sync_timeout: value.sync_timeout.into(),
+                affinity: if value.affinity < 0 {
+                    None
+                } else {
+                    Some(core_affinity::CoreId {
+                        id: value.affinity as _,
+                    })
+                },
             })
         }
     }
@@ -135,7 +143,7 @@ pub unsafe extern "C" fn AUTDLinkSOEMIsDefault(option: SOEMOption) -> bool {
 #[must_use]
 pub unsafe extern "C" fn AUTDLinkSOEMStatusGetMsg(src: Status, dst: *mut c_char) -> u32 {
     unsafe {
-        let msg = format!("{}", src);
+        let msg = format!("{src}");
         if dst.is_null() {
             return msg.len() as u32 + 1;
         }
