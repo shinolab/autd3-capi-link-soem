@@ -376,7 +376,7 @@ dependencies = [
  "spin_sleep",
  "ta",
  "thiserror",
- "thread-priority",
+ "thread-priority 2.1.1",
  "time",
  "tokio",
  "tonic",
@@ -415,7 +415,7 @@ version = "35.0.1"
 dependencies = [
  "autd3-link-soem",
  "autd3capi-driver",
- "thread-priority",
+ "thread-priority 3.0.0",
  "tracing",
  "tracing-subscriber",
 ]
@@ -1417,9 +1417,23 @@ dependencies = [
 
 [[package]]
 name = "thread-priority"
-version = "2.1.0"
+version = "2.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cd4ef372b29fbcc6cb0cef97bcbf3ffa9da90e02eb23dbf14db48ce30d11d2d5"
+checksum = "98bb0223d20b98ed7205d68ee55e3fe9f1970c17359f5ecd62e128051b5278cb"
+dependencies = [
+ "bitflags",
+ "cfg-if",
+ "libc",
+ "log",
+ "rustversion",
+ "windows 0.61.3",
+]
+
+[[package]]
+name = "thread-priority"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2210811179577da3d54eb69ab0b50490ee40491a25d95b8c6011ba40771cb721"
 dependencies = [
  "bitflags",
  "cfg-if",
